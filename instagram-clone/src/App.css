@@ -5,7 +5,6 @@ body {
 
 .app__header {
   background-color: white;
-  padding: 20px;
   border-bottom: 1px lightgray solid;
   display: flex;
   justify-content: space-between;
@@ -14,10 +13,21 @@ body {
   top: 0;
   z-index: 1;
 }
+.app__welcome {
+  background-color: white;
+  border: solid 1px lightgray;
+  max-width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  padding: 20px;
+  font-weight: normal;
+}
 
 .app__headerImage {
   object-fit: contain;
   width: 100px;
+  margin-left: 10px;
 }
 
 .app__signUp {
@@ -33,4 +43,7 @@ body {
 
 .app__postsRight {
   margin-left: 20px;
+}
+.app__loginContainer {
+  margin: 20px;
 }

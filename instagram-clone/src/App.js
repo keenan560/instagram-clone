@@ -173,7 +173,9 @@ function App() {
           alt="logo"
         />
         {user ? (
-          <Button onClick={() => auth.signOut()}>Logout</Button>
+          <div className="app__loginContainer">
+            <Button onClick={() => auth.signOut()}>Logout</Button>
+          </div>
         ) : (
           <div className="app__loginContainer">
             <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
@@ -181,6 +183,7 @@ function App() {
           </div>
         )}
       </div>
+      <h3 className="app__welcome">Welcome to my Instgram Clone</h3>
       <div className="app__posts">
         <div className="app__postsLeft">
           {posts.map(({ id, post }) => (

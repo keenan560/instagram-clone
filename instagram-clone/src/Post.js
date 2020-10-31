@@ -7,6 +7,7 @@ import firebase from "firebase";
 function Post({ imageUrl, username, user, caption, postId }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+
   useEffect(() => {
     let unsubscribe;
     if (postId) {
@@ -24,6 +25,7 @@ function Post({ imageUrl, username, user, caption, postId }) {
       unsubscribe();
     };
   }, [postId]);
+
   const postComment = (event) => {
     event.preventDefault();
     database.collection("posts").doc(postId).collection("comments").add({
@@ -33,6 +35,26 @@ function Post({ imageUrl, username, user, caption, postId }) {
     });
 
     setComment("");
+  };
+
+  console.log(username);
+
+  const deletePost = (event) => {
+    event.preventDefault();
+
+    if (
+      (postId && username === user.displayName) ||
+      (postId && user.displayName === "keenan9123")
+    ) {
+      database
+        .collection("posts")
+        .doc(`${postId}`)
+        .delete()
+        .then(() => console.log("delete"))
+        .catch((err) => console.log(err));
+    } else {
+      alert("Cannot delete someone else's post!");
+    }
   };
 
   return (
@@ -70,6 +92,9 @@ function Post({ imageUrl, username, user, caption, postId }) {
             onClick={postComment}
           >
             Post
+          </button>
+          <button onClick={deletePost} className="post__delete">
+            Delete
           </button>
         </form>
       ) : (
